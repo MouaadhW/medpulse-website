@@ -1,0 +1,46 @@
+/* MedPulse Theme CSS */
+
+:root {
+  --primary-teal: #0891B2;
+  --secondary-violet: #4F46E5;
+  --success-green: #16A34A;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --background: #F8FAFC;
+  --white: #FFFFFF;
+}
+
+/* Glass morphism utilities */
+.glass-medium {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(8, 145, 178, 0.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(8, 145, 178, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(8, 145, 178, 0.5);
+}
