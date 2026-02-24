@@ -21,7 +21,7 @@ It includes multiple pages (Home, About, Services, Pricing, Contact), modern UI 
 ### 1) Open terminal in the project
 
 ```bash
-cd "c:\Users\Mouaadh Waness\Desktop\Documents\GitHub_projects\2025\medpulse-website"
+cd "c:\Users\medpulse-website"
 ```
 
 ### 2) Install dependencies
