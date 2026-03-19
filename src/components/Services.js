@@ -6,32 +6,32 @@ export default function Services() {
 
   const services = [
     {
-      icon: '🎙️',
+      iconCode: 'VR',
       title: 'Voice Reception',
       desc: 'AI-powered voice system that handles patient calls, schedules appointments, and answers common questions 24/7.'
     },
     {
-      icon: '📅',
+      iconCode: 'SS',
       title: 'Smart Scheduling',
       desc: 'Intelligent appointment scheduling that learns your clinic patterns and optimizes doctor availability.'
     },
     {
-      icon: '🏥',
+      iconCode: 'MK',
       title: 'Medical Knowledge',
       desc: 'Built-in medical database trained on MIMIC-III data for accurate triage and patient guidance.'
     },
     {
-      icon: '🌍',
+      iconCode: 'ML',
       title: 'Multi-Language',
       desc: 'Support for English, French, Spanish, and more to serve diverse patient populations.'
     },
     {
-      icon: '🔒',
+      iconCode: 'HC',
       title: 'HIPAA Compliant',
       desc: 'Enterprise-grade encryption and security compliance for all patient data.'
     },
     {
-      icon: '⚡',
+      iconCode: 'RA',
       title: 'Real-time Analytics',
       desc: 'Dashboard with call logs, patient insights, and performance metrics.'
     }
@@ -88,10 +88,19 @@ export default function Services() {
               e.currentTarget.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.08)';
             }}>
               <div style={{
-                fontSize: '3rem',
-                marginBottom: '1rem'
+                width: '58px',
+                height: '58px',
+                borderRadius: '14px',
+                background: 'linear-gradient(145deg, #0E7490, #1D4ED8)',
+                color: '#FFFFFF',
+                fontSize: '0.98rem',
+                fontWeight: '700',
+                marginBottom: '1rem',
+                display: 'grid',
+                placeItems: 'center',
+                letterSpacing: '0.05em'
               }}>
-                {service.icon}
+                {service.iconCode}
               </div>
               <h3 style={{
                 fontSize: '1.3rem',

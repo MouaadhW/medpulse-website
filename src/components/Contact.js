@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import Navbar from './Navbar';
 
 export default function Contact() {
+  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || '';
+
   const [formData, setFormData] = useState({
     email: '',
     reason: ''
   });
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e) => {
@@ -15,14 +19,35 @@ export default function Contact() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
+
+    setLoading(true);
+    setSubmitted(false);
+    setErrorMessage('');
+
+    try {
+      const response = await fetch(`${apiBaseUrl}/api/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const payload = await response.json();
+
+      if (!response.ok) {
+        throw new Error(payload.message || 'Unable to send request.');
+      }
+
+      setSubmitted(true);
       setFormData({ email: '', reason: '' });
-    }, 3000);
+    } catch (error) {
+      setErrorMessage(error.message || 'Unable to send request.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -74,6 +99,7 @@ export default function Contact() {
               value={formData.email}
               onChange={handleChange}
               required
+              disabled={loading}
               style={{
                 padding: '1rem',
                 borderRadius: '10px',
@@ -90,6 +116,8 @@ export default function Contact() {
               onChange={handleChange}
               required
               rows="6"
+              minLength={10}
+              disabled={loading}
               style={{
                 padding: '1rem',
                 borderRadius: '10px',
@@ -109,12 +137,25 @@ export default function Contact() {
                 borderRadius: '8px',
                 color: '#16A34A'
               }}>
-                ✓ Thanks, we received your request and will get back to you soon.
+                Thanks, we received your request and will get back to you soon.
+              </div>
+            )}
+
+            {errorMessage && (
+              <div style={{
+                background: 'rgba(220, 38, 38, 0.1)',
+                border: '1px solid #DC2626',
+                padding: '1rem',
+                borderRadius: '8px',
+                color: '#B91C1C'
+              }}>
+                {errorMessage}
               </div>
             )}
 
             <button
               type="submit"
+              disabled={loading}
               style={{
                 background: 'linear-gradient(135deg, #0891B2, #4F46E5)',
                 color: 'white',
@@ -122,7 +163,7 @@ export default function Contact() {
                 padding: '1rem 2rem',
                 borderRadius: '10px',
                 fontWeight: '600',
-                cursor: 'pointer',
+                cursor: loading ? 'not-allowed' : 'pointer',
                 transition: 'all 0.3s ease'
               }}
               onMouseEnter={(e) => {
@@ -133,7 +174,7 @@ export default function Contact() {
                 e.target.style.transform = 'translateY(0)';
                 e.target.style.boxShadow = 'none';
               }}>
-              Submit Request
+              {loading ? 'Sending...' : 'Submit Request'}
             </button>
           </form>
         </div>

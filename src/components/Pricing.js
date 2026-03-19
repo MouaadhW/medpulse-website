@@ -206,10 +206,12 @@ export default function Pricing() {
                       fontWeight: feature.includes('Everything') ? '600' : '400'
                     }}>
                       <span style={{
-                        color: plan.color,
-                        fontSize: '1.2rem'
+                        width: '8px',
+                        height: '8px',
+                        borderRadius: '50%',
+                        background: plan.color,
+                        flexShrink: 0
                       }}>
-                        ✓
                       </span>
                       {feature}
                     </div>
